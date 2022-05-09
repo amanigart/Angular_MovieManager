@@ -1,0 +1,32 @@
+<h1>{{ currentPerson.firstName }} {{ currentPerson.lastName }}</h1>
+
+<div *ngIf="currentPerson.realMovies.length">
+  <h2>Director</h2>
+  <div *ngFor="let movie of currentPerson.realMovies">
+    <p>{{ movie.title }} ({{ movie.releaseYear }})</p>
+  </div>
+</div>
+
+<div *ngIf="currentPerson.scenMovies.length">
+  <h2>Writer</h2>
+  <div *ngFor="let movie of currentPerson.scenMovies">
+    <p>{{ movie.title }} {{ movie.releaseYear }}</p>
+  </div>
+</div>
+
+<div *ngIf="currentPerson.actAs.length">
+  <h2>Actor</h2>
+  <div *ngFor="let movie of currentPerson.actAs">
+    <p>{{ movie.movieTitle }} : {{ movie.role }}</p>
+  </div>
+</div>
+
+
+<!-- <p-card header="{{ toCapitalize(movie.title) }}" subheader="Card Subheader" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
+  <ng-template pTemplate="header">
+
+  </ng-template>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+      quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
+  </p>
+</p-card> -->

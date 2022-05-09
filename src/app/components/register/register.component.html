@@ -1,0 +1,38 @@
+<h2>Register</h2>
+
+<div class="grid p-fluid">
+  <div class="col-12 md:col-4">
+    <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+
+      <div class="p-inputgroup field grid">
+        <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+        <input type="text" pInputText placeholder="Email" formControlName="email">
+      </div>
+
+      <div class="p-inputgroup field grid">
+        <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+        <input type="text" pInputText placeholder="Password" formControlName="password">
+      </div>
+
+      <div class="p-inputgroup field grid">
+        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+        <input type="text" pInputText placeholder="Firstname" formControlName="firstName">
+      </div>
+
+      <div class="p-inputgroup field grid">
+        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+        <input type="text" pInputText placeholder="Lastname" formControlName="lastName">
+      </div>
+
+      <div class="p-inputgroup field grid">
+        <span class="p-inputgroup-addon"><i class="pi pi-calendar"></i></span>
+        <input type="date" pInputText formControlName="birthDate">
+        <!-- <p-calendar formControlName="birthDate"></p-calendar> -->
+      </div>
+
+      <div class="p-inputgroup field grid">
+        <button type="submit" pButton label="Register"></button>
+      </div>
+    </form>
+  </div>
+</div>

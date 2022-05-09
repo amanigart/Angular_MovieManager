@@ -1,0 +1,25 @@
+<div *ngIf="movie && comments">
+  <h1>{{ movie.title }}</h1>
+
+  <div>
+    <p>Genre: {{ movie.description }}</p>
+    <p>Release year: {{ movie.releaseYear }}</p>
+    <p>Director: {{ movie.realisator.firstName }} {{ movie.realisator.lastName }}</p>
+    <p>Writer: {{ movie.realisator.firstName }} {{ movie.realisator.lastName }}</p>
+  </div>
+
+  <div>
+    <h2>Casting</h2>
+    <div *ngFor="let actor of movie.actors">
+      <p>{{ actor.role }}: <a [routerLink]="['../../person/' +actor.id]">{{ actor.lastName }} {{ actor.firstName }}</a></p>
+    </div>
+  </div>
+
+  <div>
+    <h2>Comments</h2>
+    <div *ngFor="let comment of comments">
+      <p>{{ comment.postDate | date: "dd/MM/yyyy" }}</p>
+      <p>{{ comment.content }}</p>
+    </div>
+  </div>
+</div>

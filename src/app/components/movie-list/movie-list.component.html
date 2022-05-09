@@ -1,0 +1,17 @@
+<h1>Movie list</h1>
+<p-table styleClass="p-datatable-sm p-datatable-striped" [value]="movies">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="title">Title<p-sortIcon field="title"></p-sortIcon></th>
+      <th pSortableColumn="releaseYear">Year<p-sortIcon field="releaseYear"></p-sortIcon></th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-movie>
+    <tr>
+      <td>{{ movie.title }}</td>
+      <td>{{ movie.releaseYear }}</td>
+      <td><button [routerLink]="['/movies/'+movie.id]" [disabled]="!isAuth()">Détails</button></td>
+    </tr>
+  </ng-template>
+</p-table>

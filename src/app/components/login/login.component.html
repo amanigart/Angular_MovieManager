@@ -1,0 +1,19 @@
+<h2>Connexion</h2>
+
+<div class="grid p-fluid">
+  <div class="col-12 md:col-4">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="p-inputgroup field grid">
+        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+        <input type="text" pInputText placeholder="Email" formControlName="email">
+      </div>
+      <div class="p-inputgroup field grid">
+        <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+        <input type="text" pInputText placeholder="Password" formControlName="password">
+      </div>
+      <div class="p-inputgroup field grid">
+        <button type="submit" pButton label="Login"></button>
+      </div>
+    </form>
+  </div>
+</div>
