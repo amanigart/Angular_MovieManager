@@ -16,7 +16,7 @@ import { UserService } from 'src/app/services/user.service';
 export class MovieDetailsComponent implements OnInit, OnDestroy {
   movie!: Movie;
   comments!: Comment[];
-  subscriptions!: Subscription[];
+  subscriptions = new Subscription();
   userIds: number[] = [];
   users: UserForComments[] = [];
 
@@ -30,42 +30,35 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const id: number = this._router.snapshot.params['id'];
 
-    // Recherche du film à partie de son id
-    this._movieService.getMovieById(id).subscribe({
-      next: (movie: Movie) => this.movie = movie,
-      error: (error) => console.log(error)
-    });
+    this.subscriptions.add(
+      // Recherche du film à partie de son id
+      this._movieService.getMovieById(id).subscribe({
+        next: (movie: Movie) => this.movie = movie,
+        error: (error) => console.log(error)
+      })
+    );
 
-    // recherche des commentaires à partir de l'id du film
-    this._commentService.getMovieComments(id)?.subscribe({
-      next: (comments: Comment[]) => {
-        this.comments = comments;
-        this.comments.forEach(u => this.userIds.push(u.userID));
-      },
-      error: (error) => console.log(error)
-    });
+    this.subscriptions.add(
+      // recherche des commentaires à partir de l'id du film
+      this._commentService.getMovieComments(id)?.subscribe({
+        next: (comments: Comment[]) => {
+          this.comments = comments;
+          this.comments.forEach(u => this.userIds.push(u.userID));
+        },
+        error: (error) => console.log(error)
+      })
+    );
 
-    // Recherche les utilisateurs qui ont commenté à partir de leur id
-    this.userIds.forEach(id => this._userService.getUserInfosForComments(id).subscribe({
-      next: (user: UserForComments) => {this.users.push(user); console.log(this.users);}
-    }))
-
-
-
-    // this.subscriptions.push(this._movieService.getMovieById(id).subscribe({
-    //   next: (movie: Movie) => this.movie = movie,
-    //   error: (error) => console.log(error)
-    // }));
-
-    // this.subscriptions.push(this._commentService.getMovieComments(id)?.subscribe({
-    //   next: (comments: Comment[]) => this.comments = comments,
-    //   error: (error) => console.log(error)
-    // }));
+    this.subscriptions.add(
+      // Recherche les utilisateurs qui ont commenté à partir de leur id
+      this.userIds.forEach(id => this._userService.getUserInfosForComments(id).subscribe({
+        next: (user: UserForComments) => {this.users.push(user); console.log(this.users);}
+      }))
+    );
   }
 
   ngOnDestroy(): void {
-    if (this.subscriptions.length)
-      this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.unsubscribe();
   }
 
 }

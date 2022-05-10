@@ -23,7 +23,6 @@ export class UserService {
   }
 
   getUserInfosForComments(id: number): Observable<UserForComments> {
-    console.log('OK');
-    return this.getUserById(id).pipe(map((user: User) => ({id: user.id, lastName: user.lastName, firstName: user.firstName})))
+    return this.getUserById(id).pipe(map((user: User) => ({id: user.id, lastName: user.lastName, firstName: user.firstName})));
   }
 }

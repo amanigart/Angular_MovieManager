@@ -10,7 +10,6 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-  binding!: Date;
 
   constructor(
     private _builder: FormBuilder,

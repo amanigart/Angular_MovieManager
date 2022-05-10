@@ -9,6 +9,44 @@ body {
   padding: 10px;
 }
 
+.main {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.btn-base {
+  border: none;
+  border-radius: 4px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.btn-prime {
+  background-color: black;
+  color: whitesmoke;
+}
+
+.btn-prime-disabled{
+  background-color: lightgray;
+  color: black;
+}
+
+.btn-prime:hover {
+  background-color: gray;
+}
+
+.card-metric {
+  margin:10px;
+}
+.metric {
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+
+
+
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;

@@ -3,21 +3,28 @@
 <div *ngIf="currentPerson.realMovies.length">
   <h2>Director</h2>
   <div *ngFor="let movie of currentPerson.realMovies">
-    <p>{{ movie.title }} ({{ movie.releaseYear }})</p>
+    <p>
+      <a [routerLink]="['../../movies' + movie.id ]">{{ movie.title }}</a> : ({{ movie.releaseYear }})
+    </p>
   </div>
 </div>
 
 <div *ngIf="currentPerson.scenMovies.length">
   <h2>Writer</h2>
   <div *ngFor="let movie of currentPerson.scenMovies">
-    <p>{{ movie.title }} {{ movie.releaseYear }}</p>
+    <p>
+      <a [routerLink]="['../../movies' +movie.id]">{{ movie.title }}</a> : ({{ movie.releaseYear }})
+    </p>
   </div>
 </div>
 
 <div *ngIf="currentPerson.actAs.length">
   <h2>Actor</h2>
   <div *ngFor="let movie of currentPerson.actAs">
-    <p>{{ movie.movieTitle }} : {{ movie.role }}</p>
+
+    <p>
+      <a [routerLink]="['../../movies' +movie.movieID]">{{ movie.movieTitle }}</a> : {{ movie.role }}
+    </p>
   </div>
 </div>
 

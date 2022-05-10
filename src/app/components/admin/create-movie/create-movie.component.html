@@ -1,0 +1,53 @@
+<h1>Add a New Movie</h1>
+
+<div>
+  <form [formGroup]="creationForm" (ngSubmit)="addMovie()">
+
+    <div class="p-inputgroup field grid">
+      <span class="p-float-label">
+        <input id="id" type="number" pInputText formControlName="id">
+        <label for="id">Movie ID</label>
+      </span>
+    </div>
+
+    <div class="p-inputgroup field grid">
+      <span class="p-float-label">
+        <input id="title" type="text" pInputText formControlName="title">
+        <label for="title">Title</label>
+      </span>
+    </div>
+
+    <div class="p-inputgroup field grid">
+      <span class="p-float-label">
+        <textarea id="desc" rows="5" cols="300" pInputTextarea autoResize="autoResize" formControlName="description"></textarea>
+        <label for="desc">Summary</label>
+      </span>
+    </div>
+
+    <div class="p-inputgroup field grid">
+      <span class="p-float-label">
+        <input id="ReleaseYear" type="number" pInputText formControlName="releaseYear">
+        <label for="ReleaseYear">Release Year</label>
+      </span>
+    </div>
+
+    <div class="p-inputgroup field grid">
+      <span class="p-float-label">
+        <input id="director" type="number" pInputText formControlName="realisatorID">
+        <label for="director">Director ID</label>
+      </span>
+    </div>
+
+    <div class="p-inputgroup field grid">
+      <span class="p-float-label">
+        <input id="scenarist" type="number" pInputText formControlName="scenaristID">
+        <label for="scenarist">Writer ID</label>
+      </span>
+    </div>
+
+    <!-- <p-dropdown [options]="persons" optionLabel="persons" formControlName="scenaristID"></p-dropdown> -->
+    <div class="p-inputgroup field grid">
+      <button type="submit" pButton label="Save"></button>
+    </div>
+  </form>
+</div>

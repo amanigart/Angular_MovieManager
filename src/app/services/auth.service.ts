@@ -35,7 +35,11 @@ export class AuthService {
   isAuthenticated(): boolean {
     const jwt = new JwtHelperService();
     const token = localStorage.getItem('token') || undefined;
-
     return !jwt.isTokenExpired(token);
+  }
+
+  isAdmin(): boolean {
+    const role = localStorage.getItem('isAdmin')
+    return (role == 'true');
   }
 }
