@@ -25,8 +25,8 @@ export class MovieListComponent implements OnInit, OnDestroy {
     this.LoadMoviesList();
 
     this.deleteOperationSubscription = this._movieService.deleteOperationSuccessful.subscribe({
-      next: isSuccessful => {
-        if(isSuccessful) {
+      next: isDeleted => {
+        if (isDeleted) {
           this.LoadMoviesList();
         }
       }

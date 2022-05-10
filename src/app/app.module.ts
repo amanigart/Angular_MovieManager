@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-// Imports Forms
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// Imports HTTP
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Imports PrimeNg
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -15,6 +14,7 @@ import {CardModule} from 'primeng/card';
 import {DropdownModule} from 'primeng/dropdown';
 import {CheckboxModule} from 'primeng/checkbox';
 import {EditorModule} from 'primeng/editor';
+import {PanelModule} from 'primeng/panel';
 // App Imports
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './services/auth.interceptor';
@@ -28,6 +28,8 @@ import { PersonDetailsComponent } from './components/person-details/person-detai
 import { HomeComponent } from './components/home/home.component';
 import { PanelComponent } from './components/admin/panel/panel.component';
 import { CreateMovieComponent } from './components/admin/create-movie/create-movie.component';
+import { MetricsComponent } from './components/admin/metrics/metrics.component';
+import { MembersComponent } from './components/admin/members/members.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { CreateMovieComponent } from './components/admin/create-movie/create-mov
     PersonDetailsComponent,
     HomeComponent,
     PanelComponent,
-    CreateMovieComponent
+    CreateMovieComponent,
+    MetricsComponent,
+    MembersComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +53,7 @@ import { CreateMovieComponent } from './components/admin/create-movie/create-mov
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     // PrimeNg
     ButtonModule,
     InputTextModule,
@@ -57,7 +62,8 @@ import { CreateMovieComponent } from './components/admin/create-movie/create-mov
     CardModule,
     DropdownModule,
     CheckboxModule,
-    EditorModule
+    EditorModule,
+    PanelModule
   ],
   providers: [
     AuthService,

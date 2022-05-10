@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Comment } from 'src/app/models/comment.model';
 import { Movie } from 'src/app/models/movie.model';
 import { User, UserForComments } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { CommentService } from 'src/app/services/comment.service';
 import { MovieService } from 'src/app/services/movie.service';
 import { UserService } from 'src/app/services/user.service';
@@ -19,12 +21,15 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription();
   userIds: number[] = [];
   users: UserForComments[] = [];
+  commentForm!: FormGroup;
 
   constructor(
     private _movieService: MovieService,
     private _router: ActivatedRoute,
     private _commentService: CommentService,
-    private _userService: UserService
+    private _userService: UserService,
+    private _authService: AuthService,
+    private _builder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -55,10 +60,26 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
         next: (user: UserForComments) => {this.users.push(user); console.log(this.users);}
       }))
     );
+
+    this.blankForm();
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  blankForm(): void {
+    this.commentForm = this._builder.group({
+      content: ['', Validators.required]
+    });
+  }
+
+  isAuth(): boolean {
+    return this._authService.isAuthenticated();
+  }
+
+  test() {
+    console.log(this.commentForm.value);
   }
 
 }

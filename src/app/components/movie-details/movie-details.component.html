@@ -16,10 +16,38 @@
   </div>
 
   <div>
-    <h2>Comments</h2>
-    <div *ngFor="let comment of comments">
-      <p>{{ comment.postDate | date: "dd/MM/yyyy" }}</p>
-      <p>{{ comment.content }}</p>
+    <h2>Reviews</h2>
+    <!-- Display 'add a comment' if Auth -->
+    <div *ngIf="isAuth()">
+      <div>
+        <p-panel header="Add a Review" [toggleable]="true" [collapsed]="true" [transitionOptions]="'200ms'">
+          <!-- Comment Form -->
+          <form [formGroup]="commentForm" (ngSubmit)="test()">
+            <p-editor formControlName="content" [style]="{'height':'320px'}">
+              <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+              </ng-template>
+            </p-editor>
+            <p-button type="submit">Submit</p-button>
+          </form>
+        </p-panel>
+      </div>
     </div>
+    <!-- Display comments -->
+    <div *ngFor="let comment of comments">
+      <p-panel>
+        <ng-template pTemplate="body">
+          {{ comment.content }}
+        </ng-template>
+        <ng-template pTemplate="footer">
+          {{ comment.postDate | date: "dd/MM/yyyy" }}
+        </ng-template>
+     </p-panel>
+    </div>
+
   </div>
 </div>

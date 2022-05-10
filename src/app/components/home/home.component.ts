@@ -10,20 +10,12 @@ import { PersonService } from 'src/app/services/person.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  numberOfMovies!: number;
-  numberOfPersons!: number;
-  numberOfActors!: number;
-  numberOfDirectors!: number;
   lastMovies!: Movie[];
 
-  constructor(
-    private _router: ActivatedRoute
-  ) {}
+  constructor(private _route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.numberOfMovies = this._router.snapshot.data['allMovies'].length;
-    this.numberOfPersons = this._router.snapshot.data['allPersons'].length;
-    this.lastMovies = this._router.snapshot.data['allMovies'].slice(-3).reverse();
+    this.lastMovies = this._route.snapshot.data['allMovies'].slice(-3).reverse();
   }
 
 }

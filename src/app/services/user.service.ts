@@ -18,6 +18,10 @@ export class UserService {
     });
   }
 
+  getAllusers(): Observable<User[]> {
+    return this._httpClient.get<User[]>(API_URL + 'User');
+  }
+
   getUserById(id: number): Observable<User> {
     return this._httpClient.get<User>(API_URL + `User/${id}`);
   }

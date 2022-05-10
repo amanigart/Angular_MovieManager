@@ -14,4 +14,8 @@ export class CommentService {
   getMovieComments(id: number): Observable<Comment[]> {
     return this._http.get<Comment[]>(API_URL + `Comment/${id}`);
   }
+
+  createComment(comment: Comment): void {
+
+  }
 }

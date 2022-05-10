@@ -1,6 +1,6 @@
 <p-menubar [model]="navItems">
   <ng-template pTemplate="end">
-    <div *ngIf="isConnected()">
+    <div *ngIf="isUser">
       <button pButton (click)="logout()" icon="pi pi-power-off"></button>
     </div>
   </ng-template>

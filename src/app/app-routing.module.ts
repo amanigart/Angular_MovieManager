@@ -17,14 +17,14 @@ import { PersonResolver } from './resolvers/person.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', resolve: {allMovies: MovieResolver, allPersons: PersonListResolver}, component: HomeComponent },
+  { path: 'home', resolve: {allMovies: MovieResolver}, component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'person', component: PersonListComponent },
   { path: 'person/:id', resolve: { currentPerson: PersonResolver }, canActivate: [AuthGuard], component: PersonDetailsComponent },
   { path: 'movies', component: MovieListComponent },
   { path: 'movies/:id', canActivate: [AuthGuard], component: MovieDetailsComponent },
-  { path: 'admin', canActivate: [AdminGuard], component: PanelComponent},
+  { path: 'admin', resolve: {allMovies: MovieResolver, allPersons: PersonListResolver}, canActivate: [AdminGuard], component: PanelComponent},
   { path: 'create', resolve:{people: PersonListResolver}, canActivate: [AdminGuard], component: CreateMovieComponent},
   { path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
