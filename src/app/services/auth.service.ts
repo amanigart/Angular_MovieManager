@@ -20,6 +20,12 @@ export class AuthService {
     return this._isUserEvent$.asObservable();
   }
 
+  emitIsAdmin() {
+    this._isAdminEvent$.next(this.isAdmin())
+  }
+  emitIsUser() {
+    this._isUserEvent$.next(this.isAuthenticated())
+  }
   constructor(private _http: HttpClient) {}
 
   login(email: string, passwd: string): void {
@@ -45,13 +51,13 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    const jwt = new JwtHelperService();
-    const token = localStorage.getItem('token') || undefined;
-    return !jwt.isTokenExpired(token);
+    return localStorage.getItem('token') != null
+    // const jwt = new JwtHelperService();
+    // const token = localStorage.getItem('token') || null;
+    // return !jwt.isTokenExpired(token);
   }
 
   isAdmin(): boolean {
-    const admin = localStorage.getItem('isAdmin')
-    return (admin == 'true');
+    return localStorage.getItem('isAdmin') == 'true'
   }
 }

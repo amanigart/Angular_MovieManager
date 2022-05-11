@@ -18,6 +18,7 @@ import { UserService } from 'src/app/services/user.service';
 export class MovieDetailsComponent implements OnInit, OnDestroy {
   movie!: Movie;
   comments!: Comment[];
+  commentsIds!: number[];
   subscriptions = new Subscription();
   userIds: number[] = [];
   users: UserForComments[] = [];
@@ -33,6 +34,9 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    // Va rechercher les ids de commentaires pour connaître l'ID max
+    // const commentsIds =
+
     const id: number = this._router.snapshot.params['id'];
 
     this.subscriptions.add(
@@ -78,8 +82,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     return this._authService.isAuthenticated();
   }
 
-  test() {
-    console.log(this.commentForm.value);
+  postComment(): void {
   }
 
 }

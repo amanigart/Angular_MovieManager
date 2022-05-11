@@ -22,7 +22,7 @@
       <div>
         <p-panel header="Add a Review" [toggleable]="true" [collapsed]="true" [transitionOptions]="'200ms'">
           <!-- Comment Form -->
-          <form [formGroup]="commentForm" (ngSubmit)="test()">
+          <form [formGroup]="commentForm" (ngSubmit)="postComment()">
             <p-editor formControlName="content" [style]="{'height':'320px'}">
               <ng-template pTemplate="header">
                 <span class="ql-formats">

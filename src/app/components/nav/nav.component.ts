@@ -13,30 +13,31 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavComponent implements OnInit, OnDestroy {
   navItems!: MenuItem[];
   isAdminSubscription!: Subscription;
-  isAdmin: boolean;
+  isAdmin!: boolean;
   isUserSubscription!: Subscription;
-  isUser: boolean;
+  isUser!: boolean;
 
-  constructor(private _authService: AuthService, private _router: Router) {
-    this.isAdmin = false;
-    this.isUser = false;
-  }
+  constructor(private _authService: AuthService, private _router: Router) {}
 
   ngOnInit(): void {
-    this.getNav();
+    this.isUser = localStorage.getItem('token') != null
+    this.isAdmin = localStorage.getItem('isAdmin') == 'true'
 
     this.isAdminSubscription = this._authService.isAdminEvent$.subscribe({
       next: (isAdminRole) => {
         this.isAdmin = isAdminRole
+        this._authService.emitIsAdmin()
         this.getNav();
       }
     });
     this.isUserSubscription = this._authService.isUserEvent$.subscribe({
       next: (isUserRole) => {
         this.isUser = isUserRole;
+        this._authService.emitIsUser()
         this.getNav();
       }
     });
+    this.getNav();
   }
 
   ngOnDestroy(): void {
