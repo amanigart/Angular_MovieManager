@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatePipe } from '@angular/common'
 // Imports PrimeNg
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -72,6 +73,7 @@ import { MembersComponent } from './components/admin/members/members.component';
       useClass: AuthInterceptor,
       multi: true
     },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

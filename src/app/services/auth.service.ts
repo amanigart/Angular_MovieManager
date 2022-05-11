@@ -20,13 +20,14 @@ export class AuthService {
     return this._isUserEvent$.asObservable();
   }
 
-  emitIsAdmin() {
+  constructor(private _http: HttpClient) {}
+
+  emitIsAdmin(): void {
     this._isAdminEvent$.next(this.isAdmin())
   }
-  emitIsUser() {
+  emitIsUser(): void {
     this._isUserEvent$.next(this.isAuthenticated())
   }
-  constructor(private _http: HttpClient) {}
 
   login(email: string, passwd: string): void {
     this._http.post<User>(API_URL +'auth/auth', { "email": email, "password": passwd }).subscribe({
@@ -35,8 +36,8 @@ export class AuthService {
         localStorage.setItem('isAdmin', user.isAdmin.toString());
         localStorage.setItem('firstName', user.firstName);
         localStorage.setItem('userID', user.id.toString());
-        this._isAdminEvent$.next(this.isAdmin())
-        this._isUserEvent$.next(this.isAuthenticated())
+        this._isAdminEvent$.next(this.isAdmin());
+        this._isUserEvent$.next(this.isAuthenticated());
       },
       error: (error) => {
         console.log(error);
@@ -51,7 +52,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return localStorage.getItem('token') != null
+    return localStorage.getItem('token') !== null
     // const jwt = new JwtHelperService();
     // const token = localStorage.getItem('token') || null;
     // return !jwt.isTokenExpired(token);

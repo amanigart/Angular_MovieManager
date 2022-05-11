@@ -1,16 +1,16 @@
-<div *ngIf="movie && comments">
-  <h1>{{ movie.title }}</h1>
+<div *ngIf="currentMovie && comments">
+  <h1>{{ currentMovie.title }}</h1>
 
   <div>
-    <p>Genre: {{ movie.description }}</p>
-    <p>Release year: {{ movie.releaseYear }}</p>
-    <p>Director: {{ movie.realisator.firstName }} {{ movie.realisator.lastName }}</p>
-    <p>Writer: {{ movie.realisator.firstName }} {{ movie.realisator.lastName }}</p>
+    <p>Genre: {{ currentMovie.description }}</p>
+    <p>Release year: {{ currentMovie.releaseYear }}</p>
+    <p>Director: {{ currentMovie.realisator.firstName }} {{ currentMovie.realisator.lastName }}</p>
+    <p>Writer: {{ currentMovie.realisator.firstName }} {{ currentMovie.realisator.lastName }}</p>
   </div>
 
   <div>
     <h2>Casting</h2>
-    <div *ngFor="let actor of movie.actors">
+    <div *ngFor="let actor of currentMovie.actors">
       <p>{{ actor.role }}: <a [routerLink]="['../../person/' +actor.id]">{{ actor.lastName }} {{ actor.firstName }}</a></p>
     </div>
   </div>
@@ -40,8 +40,11 @@
     <!-- Display comments -->
     <div *ngFor="let comment of comments">
       <p-panel>
+        <ng-template pTemplate="header">
+          <button (click)="deleteComment(comment.id)">Delete</button>
+        </ng-template>
         <ng-template pTemplate="body">
-          {{ comment.content }}
+          <div [innerHTML]="comment.content">{{ comment.content }}</div>
         </ng-template>
         <ng-template pTemplate="footer">
           {{ comment.postDate | date: "dd/MM/yyyy" }}
