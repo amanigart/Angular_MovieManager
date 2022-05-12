@@ -48,10 +48,7 @@ export class NavComponent implements OnInit, OnDestroy {
   getNav(): void {
     this.navItems = [
       { label: 'Home', icon: 'pi pi-home', routerLink: ['/home'] },
-      { label: 'Admin', icon: 'pi pi-cog', routerLink: ['/admin'], visible: this.isAdmin, items:
-        [
-          {label: 'Add Movie', routerLink: ['/create']}
-        ]},
+      { label: 'Admin', icon: 'pi pi-cog', routerLink: ['/admin'], visible: this.isAdmin },
       { label: 'Persons', icon: 'pi pi-users', routerLink: ['/person'] },
       { label: 'Movies', icon: 'fa fa-solid fa-film', routerLink: ['/movies'] },
       { label: 'Login', icon: 'pi pi-user', routerLink: ['/login'], visible: !this.isUser },

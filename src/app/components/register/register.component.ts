@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
+  passwd!: string;
 
   constructor(
     private _builder: FormBuilder,

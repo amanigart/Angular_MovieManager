@@ -3,6 +3,7 @@
 //   padding: 2rem;
 // }
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900;8..144,1000&display=swap');
+@import 'primeflex/primeflex.scss';
 
 body {
   font-family: 'Roboto Flex', sans-serif;
@@ -12,6 +13,25 @@ body {
 .main {
   width: 960px;
   margin: 0 auto;
+}
+
+.title-card {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 20px;
+  border-radius: 4px;
+}
+
+.review-footer {
+  margin-top: -10px;
+  margin-bottom: -25px;
+}
+
+.mybtn {
+  @include styleclass('bg-bluegray-700 text-white hover:bg-blue-600 border-round transition-colors transition-duration-150 p-1 border-none');
+}
+.mybtn2 {
+  background-color: var(--pink-500);
 }
 
 .btn-base {
@@ -42,6 +62,12 @@ body {
   font-size: 3rem;
   font-weight: 900;
   text-align: center;
+}
+
+.adminMenu {
+  position: absolute;
+  left: 20px;
+  top: 105px;
 }
 
 

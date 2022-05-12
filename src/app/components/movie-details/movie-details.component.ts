@@ -25,6 +25,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription();
   newMessageEventSubscription!: Subscription;
   deleteCommentSubscription!: Subscription;
+  isAdminEventSubscription!: Subscription;
+  isAdmin!: boolean;
   isNewComment!: boolean;
   isCommentDeleted!: boolean;
   userIds: number[] = [];
@@ -42,8 +44,13 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // Va rechercher les ids de commentaires pour connaître l'ID max
-    // const commentsIds =
+    this.isAdmin = localStorage.getItem('isAdmin') == 'true';
+
+    this.isAdminEventSubscription = this._authService.isAdminEvent$.subscribe({
+      next: (isAdminState) => {
+        this.isAdmin = isAdminState;
+      }
+    });
 
     this.currentMovieId = parseInt(this._router.snapshot.params['id']);
 
@@ -67,7 +74,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       })
     );
 
-    this.loadComments()
+    this.loadComments();
 
     this.subscriptions.add(
       // Recherche les utilisateurs qui ont commenté à partir de leur id

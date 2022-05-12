@@ -17,7 +17,7 @@
                 [disabled]="!isAuth()">
           Détails
         </button>
-        <button class="btn-base btn-prime" *ngIf="isAdmin()" (click)="deleteMovie(movie.id)"> X </button>
+        <button [ngStyle]="{'background-color' : 'var(--pink-400)'}" class="btn-base btn-prime" *ngIf="isAdmin()" (click)="deleteMovie(movie.id)"> x </button>
       </td>
     </tr>
   </ng-template>

@@ -1,15 +1,9 @@
-<p>panel works!</p>
-
+&nbsp;
 <div>
-  <app-metrics></app-metrics>
+  <app-menu></app-menu>
 </div>
 
 <div>
-  <p-panel header="Add a Movie" [toggleable]="true" [collapsed]="true" [transitionOptions]="'200ms'">
-    <app-create-movie></app-create-movie>
-  </p-panel>
-</div>
-
-<div>
-  <app-members></app-members>
+  <router-outlet></router-outlet>
+  <!-- <router-outlet name="admin-outlet"></router-outlet> -->
 </div>

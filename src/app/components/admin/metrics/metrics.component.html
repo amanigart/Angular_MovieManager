@@ -1,13 +1,27 @@
-<p>metrics works!</p>
-
-<div class="flex flex-row">
-  <p-card class="card-metric" header="Movies">
+<div class="flex flex-row justify-content-center">
+  <p-card class="card-metric" header="Movies"
+  [style]="{ 'min-width': '250px', 'background-color': 'var(--surface-200)' }">
     <!-- <i class="fa fa-solid fa-film"></i> -->
-    <span class="metric">{{ numberOfMovies }}</span>
+    <span class="metric text-blue-400">{{ numberOfMovies }}</span>
   </p-card>
 
-  <p-card class="card-metric" header="Persons">
+  <p-card class="card-metric" header="Persons"
+  [style]="{ 'min-width': '250px', 'background-color': 'var(--surface-100)' }">
     <!-- <i class="fa fa-solid fa-users"></i> -->
-    <span class="metric">{{ numberOfPersons }}</span>
+    <span class="metric text-blue-400">{{ numberOfPersons }}</span>
+  </p-card>
+
+  <p-card class="card-metric" header="Users"
+  [style]="{ 'min-width': '250px', 'background-color': 'var(--surface-100)' }">
+    <!-- <i class="fa fa-solid fa-users"></i> -->
+    <span class="metric text-blue-400">{{ numberOfUsers }}</span>
+  </p-card>
+
+  <p-card class="card-metric" header="Comments"
+  [style]="{ 'min-width': '250px', 'background-color': 'var(--surface-200)' }">
+    <!-- <i class="fa fa-solid fa-users"></i> -->
+    <span class="metric text-blue-400">{{ numberOfComments }}</span>
   </p-card>
 </div>
+
+<app-charts></app-charts>

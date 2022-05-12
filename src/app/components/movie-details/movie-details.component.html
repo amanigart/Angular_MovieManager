@@ -1,29 +1,70 @@
 <div *ngIf="currentMovie && comments">
   <h1>{{ currentMovie.title }}</h1>
 
-  <div>
-    <p>Genre: {{ currentMovie.description }}</p>
-    <p>Release year: {{ currentMovie.releaseYear }}</p>
-    <p>Director: {{ currentMovie.realisator.firstName }} {{ currentMovie.realisator.lastName }}</p>
-    <p>Writer: {{ currentMovie.realisator.firstName }} {{ currentMovie.realisator.lastName }}</p>
-  </div>
+  <div class="grid">
+    <div class="col-4">
+      <h2>Infos</h2>
+      <div>
+        <p>Genre: {{ currentMovie.description }}</p>
+        <p>Release year: {{ currentMovie.releaseYear }}</p>
+        <p>Director: {{ currentMovie.realisator.firstName }} {{ currentMovie.realisator.lastName }}</p>
+        <p>Writer: {{ currentMovie.realisator.firstName }} {{ currentMovie.realisator.lastName }}</p>
+      </div>
+    </div>
 
-  <div>
-    <h2>Casting</h2>
-    <div *ngFor="let actor of currentMovie.actors">
-      <p>{{ actor.role }}: <a [routerLink]="['../../person/' +actor.id]">{{ actor.lastName }} {{ actor.firstName }}</a></p>
+    <div class="col-8">
+      <h2>Casting</h2>
+      <div class="flex flex-wrap justify-content-around">
+        <div *ngFor="let actor of currentMovie.actors">
+          <p-card>
+            <div>
+              <p>
+                {{ actor.role }}:
+              </p>
+              <a [routerLink]="['../../person/' +actor.id]">
+                {{ actor.lastName }} {{ actor.firstName }}
+              </a>
+            </div>
+          </p-card>
+        </div>
+      </div>
     </div>
   </div>
 
+
   <div>
-    <h2>Reviews</h2>
+    <div class="title-card blue-gray-400" [style]="{'margin-top': '30px', 'margin-bottom': '30px'}">
+      <h2>Reviews</h2>
+    </div>
+
+    <!-- Display comments -->
+    <div *ngFor="let comment of comments">
+
+      <p-panel>
+        <ng-template pTemplate="body">
+          <div [innerHTML]="comment.content">
+            {{ comment.content }}
+          </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+          <div class="flex justify-content-between align-items-center">
+            <span class="text-xs">
+              {{ comment.postDate | date: "dd/MM/yyyy" }}
+            </span>
+            <button *ngIf="isAdmin"  [ngStyle]="{'color':'var(--pink-400)'}" (click)="deleteComment(comment.id)" pButton type="button" label="Delete" icon="pi pi-trash" iconPos="right" class="p-button-text p-button-sm"></button>
+          </div>
+        </ng-template>
+     </p-panel>
+    </div>
+
     <!-- Display 'add a comment' if Auth -->
     <div *ngIf="isAuth()">
+      <p-divider></p-divider>
+      <h4>Add a review</h4>
       <div>
-        <p-panel header="Add a Review" [toggleable]="true" [collapsed]="true" [transitionOptions]="'200ms'">
-          <!-- Comment Form -->
+        <!-- <p-panel header="Add a Review" [toggleable]="true" [collapsed]="true" [transitionOptions]="'200ms'"> -->
           <form [formGroup]="commentForm" (ngSubmit)="postComment()">
-            <p-editor formControlName="content" [style]="{'height':'320px'}">
+            <p-editor formControlName="content" [style]="{'height':'150px'}">
               <ng-template pTemplate="header">
                 <span class="ql-formats">
                     <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -34,23 +75,8 @@
             </p-editor>
             <p-button type="submit">Submit</p-button>
           </form>
-        </p-panel>
+        <!-- </p-panel> -->
       </div>
     </div>
-    <!-- Display comments -->
-    <div *ngFor="let comment of comments">
-      <p-panel>
-        <ng-template pTemplate="header">
-          <button (click)="deleteComment(comment.id)">Delete</button>
-        </ng-template>
-        <ng-template pTemplate="body">
-          <div [innerHTML]="comment.content">{{ comment.content }}</div>
-        </ng-template>
-        <ng-template pTemplate="footer">
-          {{ comment.postDate | date: "dd/MM/yyyy" }}
-        </ng-template>
-     </p-panel>
-    </div>
-
   </div>
 </div>

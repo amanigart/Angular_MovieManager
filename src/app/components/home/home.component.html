@@ -1,7 +1,15 @@
 <h1>Movie Manager</h1>
 
-<div *ngFor="let movie of lastMovies">
-  <div>
-    <p>{{ movie.title }}</p>
+
+<div class="flex">
+  <div *ngFor="let movie of lastMovies">
+    <p-card>
+      <div>
+        <p>{{ movie.title }}</p>
+      </div>
+    </p-card>
   </div>
 </div>
+
+
+

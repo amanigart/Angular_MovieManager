@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
+  passwd!: string;
 
   constructor(
     private _builder: FormBuilder,

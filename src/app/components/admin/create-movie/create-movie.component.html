@@ -1,4 +1,23 @@
-<h1>Add a New Movie</h1>
+<!-- <p-dropdown [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown> -->
+
+<div [style]="{'margin-bottom': '20px'}"></div>
+
+<p-accordion>
+  <p-accordionTab header="Movie">
+     <p-card>
+       Movie
+     </p-card>
+     <p-card>Director</p-card>
+  </p-accordionTab>
+  <p-accordionTab header="Casting">
+      Content 2
+  </p-accordionTab>
+  <p-accordionTab header="Writer">
+      Content 3
+  </p-accordionTab>
+</p-accordion>
+
+<div [style]="{'margin-bottom': '50px'}"></div>
 
 <div>
   <form [formGroup]="creationForm" (ngSubmit)="addMovie()">
