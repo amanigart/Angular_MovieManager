@@ -4,3 +4,10 @@ export interface Actor {
   firstName: string;
   lastName: string;
 }
+
+export interface ActorToApi {
+  id: number;
+  role: string;
+  movieId: number,
+  personId: number
+}

@@ -23,7 +23,7 @@
   <div *ngFor="let movie of currentPerson.actAs">
 
     <p>
-      <a [routerLink]="['../../movies' +movie.movieID]">{{ movie.movieTitle }}</a> : {{ movie.role }}
+      <a [routerLink]="['../../movies/' +movie.movieID]">{{ movie.movieTitle }}</a> : {{ movie.role }}
     </p>
   </div>
 </div>

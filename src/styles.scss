@@ -10,6 +10,13 @@ body {
   padding: 10px;
 }
 
+a {
+  color: var(--blue-400);
+}
+a:hover {
+  color: var(--pink-400);
+}
+
 .main {
   width: 960px;
   margin: 0 auto;
@@ -20,6 +27,15 @@ body {
   padding-bottom: 1px;
   padding-left: 20px;
   border-radius: 4px;
+  background-color: var(--blue-100);
+}
+
+.title-card-pink {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 20px;
+  border-radius: 4px;
+  background-color: var(--pink-400);
 }
 
 .review-footer {

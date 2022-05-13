@@ -24,6 +24,7 @@ import {StepsModule} from 'primeng/steps';
 import {AccordionModule} from 'primeng/accordion';
 import {DividerModule} from 'primeng/divider';
 import {ChartModule} from 'primeng/chart';
+import {ToastModule} from 'primeng/toast';
 // App Imports
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './services/auth.interceptor';
@@ -96,7 +97,8 @@ import { SetActorComponent } from './components/admin/set-actor/set-actor.compon
     StepsModule,
     AccordionModule,
     DividerModule,
-    ChartModule
+    ChartModule,
+    ToastModule
   ],
   providers: [
     AuthService,

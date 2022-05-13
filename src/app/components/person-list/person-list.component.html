@@ -15,7 +15,8 @@
       <td>
         <button [ngClass]="isAuth() ? 'btn-base btn-prime' : 'btn-base btn-prime-disabled'"
                 [routerLink]="['/person/'+person.id]"
-                [disabled]="!isAuth()">
+                [disabled]="!isAuth()"
+                [style]="{'background-color': 'var(--blue-400)'}">
           Détails
         </button>
       </td>

@@ -1,72 +1,93 @@
-<!-- <p-dropdown [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown> -->
+<p-toast></p-toast>
 
-<div [style]="{'margin-bottom': '20px'}"></div>
-
-<p-accordion>
+<p-accordion [style]="{'margin-top': '11px'}">
   <p-accordionTab header="Movie">
-     <p-card>
-       Movie
+     <p-card header="Create a Movie">
+      <div>
+        <form [formGroup]="creationForm" (ngSubmit)="addMovie()">
+
+          <div>
+            <div>
+              <div class="p-inputgroup field grid">
+                <span class="p-float-label">
+                  <input id="title" type="text" pInputText formControlName="title">
+                  <label for="title">Title</label>
+                </span>
+              </div>
+
+              <div class="p-inputgroup field grid">
+                <span class="p-float-label">
+                  <textarea id="desc" rows="5" cols="300" pInputTextarea autoResize="autoResize" formControlName="description"></textarea>
+                  <label for="desc">Summary</label>
+                </span>
+              </div>
+            </div>
+
+            <div class="flex">
+              <div class="p-inputgroup field grid">
+                <span class="p-float-label">
+                  <input id="ReleaseYear" type="number" pInputText formControlName="releaseYear">
+                  <label for="ReleaseYear">Release Year</label>
+                </span>
+              </div>
+
+              <div>
+                <p-dropdown placeholder="--- Select a director ---" optionValue="id" [options]="persons" [(ngModel)]="selectedDirector" optionLabel="name" formControlName="realisatorID"></p-dropdown>
+              </div>
+
+              <div>
+                  <p-dropdown  placeholder="--- Select a writer ---" optionValue="id" [options]="persons" [(ngModel)]="selectedWriter" optionLabel="name" formControlName="scenaristID"></p-dropdown>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-inputgroup field grid">
+            <button type="submit" pButton label="Save"></button>
+          </div>
+
+        </form>
+      </div>
      </p-card>
-     <p-card>Director</p-card>
   </p-accordionTab>
-  <p-accordionTab header="Casting">
-      Content 2
+
+  <p-accordionTab header="Actor">
+      <p-card header="Set an Actor">
+        <div>
+          <form [formGroup]="actorForm" (ngSubmit)="addActor()">
+            <div class="flex">
+
+              <div>
+                <span class="p-float-label">
+                  <input id="a-role" type="text" pInputText formControlName="role">
+                  <label for="a-role">Role</label>
+                </span>
+              </div>
+
+              <div>
+                <p-dropdown placeholder="--- Select a person ---" optionValue="id" [options]="persons" [(ngModel)]="selectedActor" optionLabel="name" formControlName="personId"></p-dropdown>
+              </div>
+
+              <div>
+                <p-dropdown placeholder="--- Select a movie ---" optionValue="id" [options]="movies" [(ngModel)]="selectedMovie" optionLabel="title" formControlName="movieId"></p-dropdown>
+              </div>
+
+
+              <div class="p-inputgroup field grid">
+                <button type="submit" pButton label="Save"></button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </p-card>
   </p-accordionTab>
-  <p-accordionTab header="Writer">
-      Content 3
+
+  <p-accordionTab header="Person">
+      Créer une personne
   </p-accordionTab>
 </p-accordion>
 
+
 <div [style]="{'margin-bottom': '50px'}"></div>
 
-<div>
-  <form [formGroup]="creationForm" (ngSubmit)="addMovie()">
 
-    <div class="p-inputgroup field grid">
-      <span class="p-float-label">
-        <input id="id" type="number" pInputText formControlName="id">
-        <label for="id">Movie ID</label>
-      </span>
-    </div>
-
-    <div class="p-inputgroup field grid">
-      <span class="p-float-label">
-        <input id="title" type="text" pInputText formControlName="title">
-        <label for="title">Title</label>
-      </span>
-    </div>
-
-    <div class="p-inputgroup field grid">
-      <span class="p-float-label">
-        <textarea id="desc" rows="5" cols="300" pInputTextarea autoResize="autoResize" formControlName="description"></textarea>
-        <label for="desc">Summary</label>
-      </span>
-    </div>
-
-    <div class="p-inputgroup field grid">
-      <span class="p-float-label">
-        <input id="ReleaseYear" type="number" pInputText formControlName="releaseYear">
-        <label for="ReleaseYear">Release Year</label>
-      </span>
-    </div>
-
-    <div class="p-inputgroup field grid">
-      <span class="p-float-label">
-        <input id="director" type="number" pInputText formControlName="realisatorID">
-        <label for="director">Director ID</label>
-      </span>
-    </div>
-
-    <div class="p-inputgroup field grid">
-      <span class="p-float-label">
-        <input id="scenarist" type="number" pInputText formControlName="scenaristID">
-        <label for="scenarist">Writer ID</label>
-      </span>
-    </div>
-
-    <!-- <p-dropdown [options]="persons" optionLabel="persons" formControlName="scenaristID"></p-dropdown> -->
-    <div class="p-inputgroup field grid">
-      <button type="submit" pButton label="Save"></button>
-    </div>
-  </form>
-</div>

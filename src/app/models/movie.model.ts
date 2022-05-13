@@ -19,3 +19,8 @@ export interface MovieToApi {
   realisatorID: number;
   scenaristID: number;
 }
+
+export interface MovieDropDown {
+  id: number,
+  title: string;
+}

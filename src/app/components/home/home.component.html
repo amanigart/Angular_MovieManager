@@ -1,11 +1,12 @@
-<h1>Movie Manager</h1>
+<img src="./assets/movie-ticket.png" alt="" [style]="{'min-width': '960px', 'opacity': '95%', 'margin-top': '20px', 'margin-bottom':'20px'}">
 
-
-<div class="flex">
+<h2>Latest Movies</h2>
+<div class="flex justify-content-between">
   <div *ngFor="let movie of lastMovies">
-    <p-card>
+    <p-card [style]="{'background-color': 'var(--surface-100)', 'min-width': '280px'}">
       <div>
-        <p>{{ movie.title }}</p>
+        <p class="font-semibold text-center">{{ movie.title }}</p>
+        <p class="font-light text-center">{{ movie.releaseYear}}</p>
       </div>
     </p-card>
   </div>

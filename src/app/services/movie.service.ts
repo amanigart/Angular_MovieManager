@@ -9,9 +9,13 @@ import { API_URL } from './api.injectables';
 })
 export class MovieService {
   private _deleteOperationSuccessful: Subject<boolean> = new Subject();
+  private _createOperationSuccessful: Subject<boolean>=new Subject();
 
   get deleteOperationSuccessful(): Observable<boolean> {
     return this._deleteOperationSuccessful.asObservable();
+  }
+  get createOperationSuccessful(): Observable<boolean>{
+    return this._createOperationSuccessful.asObservable();
   }
 
   constructor(private _http: HttpClient) { }
@@ -26,8 +30,8 @@ export class MovieService {
 
   createMovie(movie: MovieToApi): void {
     this._http.post(API_URL + 'Movie', movie, {responseType: 'text'}).subscribe({
-      next: () => console.log(movie),
-      error: (error) => console.log(error)
+      next: () => this._createOperationSuccessful.next(true),
+      error: () => this._createOperationSuccessful.next(false)
     });
   }
 
