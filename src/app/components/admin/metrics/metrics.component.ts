@@ -37,7 +37,6 @@ export class MetricsComponent implements OnInit {
     this.numberOfMovies = this._route.snapshot.data['allMovies'].length;
     this.numberOfPersons = this._route.snapshot.data['allPersons'].length;
     this.numberOfUsers = this._route.snapshot.data['allUsers'].length;
-
     this.getAllMoviesIds();
     this.getAllComments();
   }
